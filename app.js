@@ -76,7 +76,7 @@ const capabilityToken = async (params) => {
         'phoneNumber': '+254711082316',
         'incoming': 'true',
         'outgoing': 'true',
-        'expire': '50s'
+        'expire': '7200'
     }
     if (data.username && data.clientName && data.phoneNumber ) {
         axios.defaults.headers.common['APIKEY'] = '00518498ffaa6217d01c9a539e76b3fbc3b918ea7f65b2a087ef0eb1c5467fa8';
