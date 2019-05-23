@@ -7,7 +7,7 @@ loginBtn.addEventListener("click", function () {
 function ATlogin() {
   const clientName = document.getElementById('client-name');
   if (!(/\s/.test(clientName.value))) {
-    fetch('http://localhost:5000/capability-token', {
+    fetch('/capability-token', {
       headers: { "Content-Type": "application/json; charset=utf-8" },
       method: 'POST',
       body: JSON.stringify({
