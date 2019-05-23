@@ -7,7 +7,7 @@ loginBtn.addEventListener("click", function () {
 function ATlogin() {
   const clientName = document.getElementById('client-name');
   if (!(/\s/.test(clientName.value))) {
-    fetch('/capability-token', {
+    fetch('http://localhost:5000/capability-token', {
       headers: { "Content-Type": "application/json; charset=utf-8" },
       method: 'POST',
       body: JSON.stringify({
@@ -32,6 +32,7 @@ function ATlogin() {
           callBtn = document.getElementById('call-btn'),
           callto = document.getElementById('call-to'),
           outputLabel = document.getElementById('output-lbl'),
+          outputColor = document.getElementById('output-color'),
           dtmfKeyboard = document.getElementById('dtmf-keyboard');
 
         logoutBtn.addEventListener("click", function () {
@@ -68,6 +69,7 @@ function ATlogin() {
           callto.removeAttribute('disabled');
           callBtn.removeAttribute('disabled');
           callto.focus();
+          outputColor.classList = 'ui tiny green circular label';
           outputLabel.textContent = 'Ready to make calls';
         }, false);
 
@@ -79,6 +81,7 @@ function ATlogin() {
           callto.setAttribute('disabled', 'disabled');
           callBtn.setAttribute('disabled', 'disabled');
           outputLabel.textContent = 'Login';
+          outputColor.classList = 'ui tiny orange circular label'
         }, false);
 
         client.on('calling', function () {
@@ -86,6 +89,7 @@ function ATlogin() {
           callto.setAttribute('disabled', 'disabled');
           callBtn.setAttribute('disabled', 'disabled');
           outputLabel.textContent = 'Calling ' + client.getCounterpartNum() + '...';
+          outputColor.classList = 'ui tiny green circular label'
         }, false);
 
         client.on('incomingcall', function (params) {
@@ -94,6 +98,7 @@ function ATlogin() {
           callBtn.setAttribute('disabled', 'disabled');
           callto.setAttribute('disabled', 'disabled');
           outputLabel.textContent = '...incoming call from ' + params.from;
+          outputColor.classList = 'ui tiny green circular label'
         }, false);
 
         client.on('callaccepted', function () {
@@ -103,6 +108,7 @@ function ATlogin() {
           answerBtn.setAttribute('disabled', 'disabled');
           dtmfKeyboard.style.display = 'initial';
           outputLabel.textContent = 'In conversation with ' + client.getCounterpartNum();
+          outputColor.classList = 'ui tiny green circular label'
         }, false);
 
 
@@ -113,16 +119,19 @@ function ATlogin() {
           callto.removeAttribute('disabled');
           dtmfKeyboard.style.display = 'none';
           outputLabel.textContent = 'Registered';
+          outputColor.classList = 'ui tiny orange circular label'
         }, false);
 
 
         //////////////////////add this
         client.on('offline', function () {
           outputLabel.textContent = 'Token expired, refresh page';
+          outputColor.classList = 'ui tiny red circular label'
         }, false);
 
         client.on('closed', function () {
           outputLabel.textContent = 'connection closed, refresh page';
+          outputColor.classList = 'ui tiny red circular label'
         }, false);
       })
       .catch(error => console.log(error));
