@@ -1,0 +1,18 @@
+{
+	"name": "htmlRender",
+	"version": "1.0.0",
+	"description": "",
+	"main": "app.js",
+	"scripts": {
+		"start": "node app.js",
+		"test": "echo `Error: no test specified` &amp;&amp; exit 1"
+	},
+	"keywords": [],
+	"author": "mmwirigi@africastalking.com",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.16.4",
+		"axios": "^0.18.0",
+		"body-parser": "^1.18.3"
+	}
+}
