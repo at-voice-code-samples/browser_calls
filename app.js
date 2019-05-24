@@ -56,7 +56,7 @@ app.post('/webrtc', (req, res) => {
 				        <Say>Press one then hash to listen to the voice team mixtape</Say>
 				    </GetDigits>`;
 
-    }
+    // }
     // else {
     //     callActions = `<Dial phoneNumbers="${lastRegisteredClient}"/>`;   
     // }
