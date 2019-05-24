@@ -50,16 +50,16 @@ app.post('/capability-token', async (req, res) => {
 app.post('/webrtc', (req, res) => {
     console.log(JSON.stringify(req.body, null, 2));
     const clientDialedNumber = req.body.clientDialedNumber;
-    if (req.body.clientDialedNumber){
+    // if (req.body.clientDialedNumber){
     	// callActions = `<Dial phoneNumbers="${clientDialedNumber}"/>`;
         callActions = `<GetDigits timeout="30" finishOnKey="#" callbackUrl="https://at-voice.herokuapp.com/dtmf">
 				        <Say>Press one then hash to listen to the voice team mixtape</Say>
 				    </GetDigits>`;
 
-    }
-    else {
-        callActions = `<Dial phoneNumbers="${lastRegisteredClient}"/>`;   
-    }
+    // }
+    // else {
+    //     callActions = `<Dial phoneNumbers="${lastRegisteredClient}"/>`;   
+    // }
     responseAction = '<?xml version="1.0" encoding="UTF-8"?><Response>' + `${callActions}` + '</Response>';
     res.send(responseAction);
 });
