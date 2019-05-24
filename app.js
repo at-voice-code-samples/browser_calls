@@ -51,10 +51,10 @@ app.post('/webrtc', (req, res) => {
     console.log(JSON.stringify(req.body, null, 2));
     const clientDialedNumber = req.body.clientDialedNumber;
     if (req.body.clientDialedNumber){
-    	// callActions = `<Dial phoneNumbers="${clientDialedNumber}"/>`;
-        callActions = `<GetDigits timeout="30" finishOnKey="#" callbackUrl="https://at-voice.herokuapp.com/dtmf">
-				        <Say>Press one then hash to continue or press two then hash to listen to the voice team mixtape</Say>
-				    </GetDigits>`;
+    	callActions = `<Dial phoneNumbers="${clientDialedNumber}"/>`;
+        // callActions = `<GetDigits timeout="30" finishOnKey="#" callbackUrl="https://at-voice.herokuapp.com/dtmf">
+				    //     <Say>Press one then hash to continue or press two then hash to listen to the voice team mixtape</Say>
+				    // </GetDigits>`;
 
     }
     else {
