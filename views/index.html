@@ -27,6 +27,9 @@
 </head>
 
 <body>
+  <div id='loader' class="ui dimmer">
+    <div class="ui loader"></div>
+  </div>
   <div class="ui center aligned stackable grid">
     <div class="row">
       <div class="column" style="padding: 3em 0 !important; ">
@@ -40,7 +43,7 @@
           <div class="field">
             <label>Name</label>
             <div class="ui acion input">
-              <input id="client-name" type="text" name="clientName" placeholder="e.g Ejiro_maina">
+              <input id="client-name" type="text" name="clientName" placeholder="e.g Ejiro_maina" required>
             </div>
           </div>
           <div class="field">
@@ -71,7 +74,7 @@
       </div>
     </div>
     <div class="row">
-      <table id="dtmf-keyboard" class="ui basic collapsing celled table">
+      <table id="dtmf-keyboard" class="ui basi unstackable collapsing celled table">
         <tr>
           <td>1</td>
           <td>2</td>

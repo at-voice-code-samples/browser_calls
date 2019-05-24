@@ -1,12 +1,14 @@
 
 
-const loginBtn = document.getElementById('login-btn');
+const loginBtn = document.getElementById('login-btn'),
+outputLabel = document.getElementById('output-lbl');
 loginBtn.addEventListener("click", function () {
   ATlogin();
 });
 function ATlogin() {
   const clientName = document.getElementById('client-name');
-  if (!(/\s/.test(clientName.value))) {
+  if (!(clientName.value.length === 0)) {
+    loader.classList = "ui active dimmer";
     fetch('/capability-token', {
       headers: { "Content-Type": "application/json; charset=utf-8" },
       method: 'POST',
@@ -31,9 +33,9 @@ function ATlogin() {
           answerBtn = document.getElementById('answer-btn'),
           callBtn = document.getElementById('call-btn'),
           callto = document.getElementById('call-to'),
-          outputLabel = document.getElementById('output-lbl'),
           outputColor = document.getElementById('output-color'),
-          dtmfKeyboard = document.getElementById('dtmf-keyboard');
+          dtmfKeyboard = document.getElementById('dtmf-keyboard'),
+          loader = document.getElementById('loader');
 
         logoutBtn.addEventListener("click", function () {
           client.hangup();
@@ -72,6 +74,7 @@ function ATlogin() {
           callto.focus();
           outputColor.classList = 'ui tiny green circular label';
           outputLabel.textContent = 'Ready to make calls';
+          loader.classList = "ui dimmer";
         }, false);
 
 
@@ -135,10 +138,13 @@ function ATlogin() {
           outputColor.classList = 'ui tiny red circular label'
         }, false);
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        loader.classList = "ui dimmer";
+        console.log(error)
+      });
   }
   else {
-    clientName.value = 'make sure client name is valid';
+    outputLabel.textContent = 'make sure client name is valid';
   }
 }
 
