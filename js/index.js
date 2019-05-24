@@ -37,10 +37,10 @@ function ATlogin() {
           dtmfKeyboard = document.getElementById('dtmf-keyboard'),
           loader = document.getElementById('loader');
 
-        logoutBtn.addEventListener("click", function () {
-          client.hangup();
-          client.logout();
-        });
+        // logoutBtn.addEventListener("click", function () {
+        //   client.hangup();
+        //   client.logout();
+        // });
 
         hangupBtn.addEventListener("click", function () {
           client.hangup();
