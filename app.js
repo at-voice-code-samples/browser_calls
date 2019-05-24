@@ -51,10 +51,10 @@ app.post('/webrtc', (req, res) => {
     console.log(JSON.stringify(req.body, null, 2));
     const clientDialedNumber = req.body.clientDialedNumber;
     if (req.body.clientDialedNumber){
-    	callActions = `<Dial phoneNumbers="${clientDialedNumber}"/>`;
-        // callActions = `<GetDigits timeout="30" finishOnKey="#" callbackUrl="https://at-voice.herokuapp.com/dtmf">
-				    //     <Say>Press one then hash to continue or press two then hash to listen to the voice team mixtape</Say>
-				    // </GetDigits>`;
+    	// callActions = `<Dial phoneNumbers="${clientDialedNumber}"/>`;
+        callActions = `<GetDigits timeout="30" finishOnKey="#" callbackUrl="https://at-voice.herokuapp.com/dtmf">
+				        <Say>Press one then hash to listen to the voice team mixtape</Say>
+				    </GetDigits>`;
 
     }
     else {
@@ -69,9 +69,7 @@ app.post('/dtmf', (req, res) => {
     console.log(JSON.stringify(req.body, null, 2));
     const client = req.body;
     if (client.dtmfDigits === '1'){
-    	callActions = `<Dial phoneNumbers="${client.clientDialedNumber}"/>`;
-	} else if (client.dtmfDigits === '2'){
-		callActions = `<Play url="https://at-voice.herokuapp.com/sounds/babyshark.mp3"/>`;
+    	callActions = `<Play url="https://at-voice.herokuapp.com/sounds/babyshark.mp3"/>`;
 	}
 	else{
 		callActions = `<Say>Wrong input added</Say>`;
