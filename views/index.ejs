@@ -12,18 +12,21 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
-    table.ui.table{
+
+    table.ui.table {
       display: none;
       font-size: 30px;
     }
-    table.ui.table td{
+
+    table.ui.table td {
       cursor: pointer;
     }
-    table.ui.table td:hover{
-      background-color:rgb(233, 233, 233);
+
+    table.ui.table td:hover {
+      background-color: rgb(233, 233, 233);
     }
   </style>
-  
+
 </head>
 
 <body>
@@ -33,8 +36,9 @@
   <div class="ui center aligned stackable grid">
     <div class="row">
       <div class="column" style="padding: 3em 0 !important; ">
-        
-        <span id="output-color" class="ui tiny orange circular label"></span>&nbsp;<span class="ui large header" id="output-lbl">Ready</span>
+
+        <span id="output-color" class="ui tiny orange circular label"></span>&nbsp;<span class="ui large header"
+          id="output-lbl">Ready</span>
       </div>
     </div>
     <div class="row">
@@ -48,7 +52,7 @@
           </div>
           <div class="field">
             <button id="login-btn" class="ui positive button">Login</button>
-            <button id="logout-btn" class="ui negative button" disabled style="display: none">Logout</button>
+            <button id="logout-btn" class="ui negative button" disabled>Logout</button>
           </div>
         </div>
       </div>
@@ -98,8 +102,6 @@
       </table>
     </div>
   </div>
-  <script type="text/javascript" src="js/app.bundle.js"></script>
+  <script src="https://unpkg.com/africastalking-client@1.0.2/build/africastalking.js"></script>=
   <script src="js/index.js"></script>
 </body>
-
-</html>

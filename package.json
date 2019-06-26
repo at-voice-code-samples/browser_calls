@@ -1,18 +1,23 @@
 {
-	"name": "htmlRender",
-	"version": "1.0.0",
-	"description": "",
-	"main": "app.js",
-	"scripts": {
-		"start": "node app.js",
-		"test": "echo `Error: no test specified` &amp;&amp; exit 1"
-	},
-	"keywords": [],
-	"author": "mmwirigi@africastalking.com",
-	"license": "ISC",
-	"dependencies": {
-		"express": "^4.16.4",
-		"axios": "^0.18.0",
-		"body-parser": "^1.18.3"
-	}
+  "name": "browser_calls",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./bin/www",
+    "test": "echo `Error: no test specified` &amp;&amp; exit 1"
+  },
+  "keywords": [],
+  "author": "mmwirigi@africastalking.com",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^9.4.7",
+    "axios": "^0.19.0",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "^2.6.2",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0"
+  }
 }

@@ -1,10 +1,12 @@
-
+const username = 'ADD_YOUR_AFRICASTALKING_USERNAME_HERE';
 
 const loginBtn = document.getElementById('login-btn'),
-outputLabel = document.getElementById('output-lbl');
+  outputLabel = document.getElementById('output-lbl'),
+  loader = document.getElementById('loader');
 loginBtn.addEventListener("click", function () {
   ATlogin();
-});
+});  
+console.log({ Africastalking })
 function ATlogin() {
   const clientName = document.getElementById('client-name');
   if (!(clientName.value.length === 0)) {
@@ -19,11 +21,12 @@ function ATlogin() {
       .then(data => { return data.json() })
       .then(response => {
         let token = response.token;
+        console.log(response)
         const at = new Africastalking.Client(token, {
-          sounds: {
-            dialing: '/sounds/dial.mp3',
-            ringing: '/sounds/ring.mp3'
-          }
+          // sounds: {
+          //   dialing: '/sounds/dial.mp3',
+          //   ringing: '/sounds/ring.mp3'
+          // }
         })
         return at;
       })
@@ -34,8 +37,7 @@ function ATlogin() {
           callBtn = document.getElementById('call-btn'),
           callto = document.getElementById('call-to'),
           outputColor = document.getElementById('output-color'),
-          dtmfKeyboard = document.getElementById('dtmf-keyboard'),
-          loader = document.getElementById('loader');
+          dtmfKeyboard = document.getElementById('dtmf-keyboard');
 
         logoutBtn.addEventListener("click", function () {
           client.hangup();
@@ -52,7 +54,7 @@ function ATlogin() {
 
         callBtn.addEventListener("click", function () {
           let to = document.getElementById('call-to').value;
-          if (/^[a-zA-Z]+/.test(to)) { to = 'mwirigiApp.'+ to }
+          if (/^[a-zA-Z]+/.test(to)) { to = `${username}.${to}` }
           client.call(to, false);
         });
 
@@ -92,7 +94,7 @@ function ATlogin() {
           hangupBtn.removeAttribute('disabled');
           callto.setAttribute('disabled', 'disabled');
           callBtn.setAttribute('disabled', 'disabled');
-          outputLabel.textContent = 'Calling ' + client.getCounterpartNum().replace("mwirigiApp.", "") + '...';
+          outputLabel.textContent = 'Calling ' + client.getCounterpartNum().replace(`${username}.`, "") + '...';
           outputColor.classList = 'ui tiny green circular label'
         }, false);
 
@@ -101,7 +103,7 @@ function ATlogin() {
           answerBtn.removeAttribute('disabled');
           callBtn.setAttribute('disabled', 'disabled');
           callto.setAttribute('disabled', 'disabled');
-          outputLabel.textContent = 'Incoming call from ' + params.from.replace("mwirigiApp.", "");
+          outputLabel.textContent = 'Incoming call from ' + params.from.replace(`${username}.`, "");
           outputColor.classList = 'ui tiny green circular label'
         }, false);
 
@@ -111,7 +113,7 @@ function ATlogin() {
           callto.setAttribute('disabled', 'disabled');
           answerBtn.setAttribute('disabled', 'disabled');
           dtmfKeyboard.style.display = 'initial';
-          outputLabel.textContent = 'In conversation with ' + client.getCounterpartNum().replace("mwirigiApp.", "");
+          outputLabel.textContent = 'In conversation with ' + client.getCounterpartNum().replace(`${username}.`, "");
           outputColor.classList = 'ui tiny green circular label'
         }, false);
 
@@ -130,12 +132,20 @@ function ATlogin() {
         //////////////////////add this
         client.on('offline', function () {
           outputLabel.textContent = 'Token expired, refresh page';
-          outputColor.classList = 'ui tiny red circular label'
+          outputColor.classList = 'ui tiny red circular label';
+          loader.classList = "ui dimmer";
+        }, false);
+
+        client.on('missedcall', function () {
+          outputLabel.textContent = 'Missed call from ' + client.getCounterpartNum().replace(`${username}.`, "");
+          outputColor.classList = 'ui tiny red circular label';
+          loader.classList = "ui dimmer";
         }, false);
 
         client.on('closed', function () {
           outputLabel.textContent = 'connection closed, refresh page';
-          outputColor.classList = 'ui tiny red circular label'
+          outputColor.classList = 'ui tiny red circular label';
+          loader.classList = "ui dimmer";
         }, false);
       })
       .catch(error => {
